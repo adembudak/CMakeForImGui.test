@@ -1,0 +1,35 @@
+cmake_minimum_required(VERSION 3.40.0)
+
+project(CMakeForImGui.examples CXX)
+
+find_package(CMakeForImGui CONFIG REQUIRED)
+
+add_executable(example_null)
+target_sources(example_null PRIVATE examples/example_null/main.cpp) 
+target_link_libraries(example_null PRIVATE Unofficial::DearImGui::imgui_core)
+
+if(WIN32)
+  add_executable(example_win32_opengl3)
+  target_sources(example_win32_opengl3 PRIVATE examples/example_win32_opengl3/main.cpp)
+  target_link_libraries(example_win32_opengl3 PRIVATE Unofficial::DearImGui::imgui_backend_win32 Unofficial::DearImGui::imgui_backend_opengl3)
+
+  add_executable(example_win32_directx9)
+  target_sources(example_win32_directx9 PRIVATE examples/example_win32_directx9/main.cpp)
+  target_link_libraries(example_win32_directx9 PRIVATE Unofficial::DearImGui::imgui_backend_win32 Unofficial::DearImGui::imgui_backend_dx9)
+ 
+  add_executable(example_win32_directx10)
+  target_sources(example_win32_directx10 PRIVATE examples/example_win32_directx10/main.cpp)
+  target_link_libraries(example_win32_directx10 PRIVATE Unofficial::DearImGui::imgui_backend_win32 Unofficial::DearImGui::imgui_backend_dx10)
+ 
+  add_executable(example_win32_directx11)
+  target_sources(example_win32_directx11 PRIVATE examples/example_win32_directx11/main.cpp)
+  target_link_libraries(example_win32_directx11 PRIVATE Unofficial::DearImGui::imgui_backend_win32 Unofficial::DearImGui::imgui_backend_dx11)
+ 
+  add_executable(example_win32_directx12)
+  target_sources(example_win32_directx12 PRIVATE examples/example_win32_directx12/main.cpp)
+  target_link_libraries(example_win32_directx12 PRIVATE Unofficial::DearImGui::imgui_backend_win32 Unofficial::DearImGui::imgui_backend_dx12)
+ 
+  add_executable(example_win32_vulkan)
+  target_sources(example_win32_vulkan PRIVATE examples/example_win32_vulkan/main.cpp)
+  target_link_libraries(example_win32_vulkan PRIVATE Unofficial::DearImGui::imgui_backend_win32 Unofficial::DearImGui::imgui_backend_vulkan)
+endif()
