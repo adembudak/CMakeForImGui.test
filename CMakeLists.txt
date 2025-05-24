@@ -52,6 +52,10 @@ add_executable(example_sdl3_vulkan)
 target_sources(example_sdl3_vulkan PRIVATE examples/example_sdl3_vulkan/main.cpp)
 target_link_libraries(example_sdl3_vulkan PRIVATE Unofficial::DearImGui::imgui_backend_sdl3 Unofficial::DearImGui::imgui_backend_vulkan)
 
+add_executable(example_sdl3_sdlrenderer3)
+target_sources(example_sdl3_sdlrenderer3 PRIVATE examples/example_sdl3_sdlrenderer3/main.cpp)
+target_link_libraries(example_sdl3_sdlrenderer3 PRIVATE Unofficial::DearImGui::imgui_backend_sdlrenderer3 Unofficial::DearImGui::imgui_backend_sdl3)
+
 if(WIN32)
   add_executable(example_win32_opengl3)
   target_sources(example_win32_opengl3 PRIVATE examples/example_win32_opengl3/main.cpp)
