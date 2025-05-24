@@ -12,6 +12,10 @@ add_executable(example_allegro5)
 target_sources(example_allegro5 PRIVATE examples/example_allegro5/main.cpp)
 target_link_libraries(example_allegro5 PRIVATE Unofficial::DearImGui::imgui_backend_allegro5)
 
+add_executable(example_glfw_opengl3)
+target_sources(example_glfw_opengl3 PRIVATE examples/example_glfw_opengl3/main.cpp)
+target_link_libraries(example_glfw_opengl3 PRIVATE Unofficial::DearImGui::imgui_backend_glfw)
+
 if(WIN32)
   add_executable(example_win32_opengl3)
   target_sources(example_win32_opengl3 PRIVATE examples/example_win32_opengl3/main.cpp)
