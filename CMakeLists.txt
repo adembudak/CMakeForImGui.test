@@ -5,8 +5,12 @@ project(CMakeForImGui.examples CXX)
 find_package(CMakeForImGui CONFIG REQUIRED)
 
 add_executable(example_null)
-target_sources(example_null PRIVATE examples/example_null/main.cpp) 
+target_sources(example_null PRIVATE examples/example_null/main.cpp)
 target_link_libraries(example_null PRIVATE Unofficial::DearImGui::imgui_core)
+
+add_executable(example_allegro5)
+target_sources(example_allegro5 PRIVATE examples/example_allegro5/main.cpp)
+target_link_libraries(example_allegro5 PRIVATE Unofficial::DearImGui::imgui_backend_allegro5)
 
 if(WIN32)
   add_executable(example_win32_opengl3)
