@@ -24,6 +24,10 @@ add_executable(example_glfw_vulkan)
 target_sources(example_glfw_vulkan PRIVATE examples/example_glfw_vulkan/main.cpp)
 target_link_libraries(example_glfw_vulkan PRIVATE Unofficial::DearImGui::imgui_backend_glfw Unofficial::DearImGui::imgui_backend_vulkan)
 
+add_executable(example_glut_opengl2)
+target_sources(example_glut_opengl2 PRIVATE examples/example_glut_opengl2/main.cpp)
+target_link_libraries(example_glut_opengl2 PRIVATE Unofficial::DearImGui::imgui_backend_glut Unofficial::DearImGui::imgui_backend_opengl2)
+
 if(WIN32)
   add_executable(example_win32_opengl3)
   target_sources(example_win32_opengl3 PRIVATE examples/example_win32_opengl3/main.cpp)
