@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.40.0)
 
-project(CMakeForImGui.examples CXX)
+project(CMakeForImGui.test CXX)
 
 find_package(CMakeForImGui CONFIG REQUIRED)
 
@@ -55,6 +55,10 @@ target_link_libraries(example_sdl3_vulkan PRIVATE Unofficial::DearImGui::imgui_b
 add_executable(example_sdl3_sdlrenderer3)
 target_sources(example_sdl3_sdlrenderer3 PRIVATE examples/example_sdl3_sdlrenderer3/main.cpp)
 target_link_libraries(example_sdl3_sdlrenderer3 PRIVATE Unofficial::DearImGui::imgui_backend_sdlrenderer3 Unofficial::DearImGui::imgui_backend_sdl3)
+
+add_executable(example_sdl3_sdlgpu3)
+target_sources(example_sdl3_sdlgpu3 PRIVATE examples/example_sdl3_sdlgpu3/main.cpp)
+target_link_libraries(example_sdl3_sdlgpu3 PRIVATE Unofficial::DearImGui::imgui_backend_sdlgpu3 Unofficial::DearImGui::imgui_backend_sdl3)
 
 if(WIN32)
   add_executable(example_win32_opengl3)
