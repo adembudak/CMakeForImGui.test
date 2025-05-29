@@ -14,7 +14,7 @@ target_link_libraries(example_allegro5 PRIVATE Unofficial::DearImGui::imgui_back
 
 add_executable(example_glfw_opengl3)
 target_sources(example_glfw_opengl3 PRIVATE examples/example_glfw_opengl3/main.cpp)
-target_link_libraries(example_glfw_opengl3 PRIVATE Unofficial::DearImGui::imgui_backend_glfw)
+target_link_libraries(example_glfw_opengl3 PRIVATE Unofficial::DearImGui::imgui_backend_glfw Unofficial::DearImgui::imgui_backend_opengl3)
 
 add_executable(example_glfw_opengl2)
 target_sources(example_glfw_opengl2 PRIVATE examples/example_glfw_opengl2/main.cpp)
@@ -31,18 +31,22 @@ target_link_libraries(example_glut_opengl2 PRIVATE Unofficial::DearImGui::imgui_
 add_executable(example_sdl2_opengl2)
 target_sources(example_sdl2_opengl2 PRIVATE examples/example_sdl2_opengl2/main.cpp)
 target_link_libraries(example_sdl2_opengl2 PRIVATE Unofficial::DearImGui::imgui_backend_sdl2 Unofficial::DearImGui::imgui_backend_opengl2)
+target_compile_definitions(example_sdl2_opengl2 PRIVATE $<$<PLATFORM_ID:Windows>:SDL_MAIN_HANDLED>)
 
 add_executable(example_sdl2_opengl3)
 target_sources(example_sdl2_opengl3 PRIVATE examples/example_sdl2_opengl3/main.cpp)
 target_link_libraries(example_sdl2_opengl3 PRIVATE Unofficial::DearImGui::imgui_backend_sdl2 Unofficial::DearImGui::imgui_backend_opengl3)
+target_compile_definitions(example_sdl2_opengl3 PRIVATE $<$<PLATFORM_ID:Windows>:SDL_MAIN_HANDLED>)
 
 add_executable(example_sdl2_vulkan)
 target_sources(example_sdl2_vulkan PRIVATE examples/example_sdl2_vulkan/main.cpp)
 target_link_libraries(example_sdl2_vulkan PRIVATE Unofficial::DearImGui::imgui_backend_sdl2 Unofficial::DearImGui::imgui_backend_vulkan)
+target_compile_definitions(example_sdl2_vulkan PRIVATE $<$<PLATFORM_ID:Windows>:SDL_MAIN_HANDLED>)
 
 add_executable(example_sdl2_sdlrenderer2)
 target_sources(example_sdl2_sdlrenderer2 PRIVATE examples/example_sdl2_sdlrenderer2/main.cpp)
 target_link_libraries(example_sdl2_sdlrenderer2 PRIVATE Unofficial::DearImGui::imgui_backend_sdlrenderer2 Unofficial::DearImGui::imgui_backend_sdl2)
+target_compile_definitions(example_sdl2_sdlrenderer2 PRIVATE $<$<PLATFORM_ID:Windows>:SDL_MAIN_HANDLED>)
 
 add_executable(example_sdl3_opengl3)
 target_sources(example_sdl3_opengl3 PRIVATE examples/example_sdl3_opengl3/main.cpp)
