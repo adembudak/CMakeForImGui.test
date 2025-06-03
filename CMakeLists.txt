@@ -14,7 +14,7 @@ target_link_libraries(example_allegro5 PRIVATE Unofficial::DearImGui::imgui_back
 
 add_executable(example_glfw_opengl3)
 target_sources(example_glfw_opengl3 PRIVATE examples/example_glfw_opengl3/main.cpp)
-target_link_libraries(example_glfw_opengl3 PRIVATE Unofficial::DearImGui::imgui_backend_glfw Unofficial::DearImgui::imgui_backend_opengl3)
+target_link_libraries(example_glfw_opengl3 PRIVATE Unofficial::DearImGui::imgui_backend_glfw Unofficial::DearImGui::imgui_backend_opengl3)
 
 add_executable(example_glfw_opengl2)
 target_sources(example_glfw_opengl2 PRIVATE examples/example_glfw_opengl2/main.cpp)
