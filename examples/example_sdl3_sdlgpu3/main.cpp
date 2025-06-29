@@ -179,7 +179,7 @@ int main(int, char**)
         if (swapchain_texture != nullptr && !is_minimized)
         {
             // This is mandatory: call Imgui_ImplSDLGPU3_PrepareDrawData() to upload the vertex/index buffer!
-            Imgui_ImplSDLGPU3_PrepareDrawData(draw_data, command_buffer);
+            ImGui_ImplSDLGPU3_PrepareDrawData(draw_data, command_buffer);
 
             // Setup and start a render pass
             SDL_GPUColorTargetInfo target_info = {};
