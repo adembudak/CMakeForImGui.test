@@ -1,0 +1,107 @@
+name: GitHub Actions
+run-name: ${{ github.actor }} is testing out ${{ github.repository }}
+
+on:
+  push:
+
+jobs:
+  Build:
+    runs-on: macos-15
+    steps:
+      - name: Install required packages
+        run: brew install --cask xquartz
+
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v2
+        with:
+          cmake-version: '4.0.0'
+
+      - name: Check out ImGui repository
+        uses: actions/checkout@v4
+        with:
+          repository: ocornut/imgui
+          show-progress: false
+          path: imgui
+
+      - name: Check out CMakeForImGui
+        uses: actions/checkout@v4
+        with:
+          repository: adembudak/CMakeForImGui
+          show-progress: false
+          path: CMakeForImGui
+
+      - name: Setup vcpkg
+        uses: johnwason/vcpkg-action@v7
+        id: vcpkg
+        with:
+          manifest-dir: ${{ github.workspace }}/CMakeForImGui/.github/workflows
+          triplet: x64-osx
+          token: ${{ github.token }}
+
+      - name: Configure ImGui with CMakeForImGui
+        run: >
+          cmake
+          -S ${{ github.workspace }}/CMakeForImGui
+          -B ${{ github.workspace }}/build
+          -G Xcode
+          -D VCPKG_MANIFEST_MODE=ON
+          -D VCPKG_MANIFEST_DIR=${{ github.workspace }}/CMakeForImGui/.github/workflows
+          -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/install.in.here
+          -D IMGUI_SOURCE_DIR=${{ github.workspace }}/imgui
+          -D install=ON
+          -D install_examples=OFF
+          -D examples=OFF
+          -D uninstall=OFF
+          -D misc=ON -D misc_freetype=ON -D misc_cpp=ON -D misc_debugger=ON -D misc_fonts=ON
+          -D pkg-config=ON
+          -D allegro5=ON
+          -D glut=ON
+          -D glfw=ON
+          -D opengl2=ON
+          -D opengl3=ON
+          -D vulkan=ON
+          -D sdl2=ON
+          -D sdlrenderer2=ON
+          -D sdl3=ON
+          -D sdlrenderer3=ON
+          -D sdlgpu3=ON
+          -D osx=ON
+          -D metal=ON
+          --toolchain ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
+
+      - name: Build ImGui
+        run: >
+          cmake
+          --build ${{ github.workspace }}/build
+          --config Release
+
+      - name: Install ImGui
+        run: >
+          cmake
+          --install ${{ github.workspace }}/build
+          --config Release
+
+      - name: Check out CMakeForImGui.test
+        uses: actions/checkout@v4
+        with:
+          show-progress: false
+          path: CMakeForImGui.test
+
+      - name: Configure examples
+        run: >
+          cmake
+          -S ${{ github.workspace }}/CMakeForImGui.test
+          -B ${{ github.workspace }}/build-examples
+          -D CMakeForImGui_DIR=${{ github.workspace }}/install.in.here/lib/cmake/CMakeForImGui
+          -G Xcode
+          -D VCPKG_MANIFEST_MODE=ON
+          -D VCPKG_MANIFEST_DIR=${{ github.workspace }}/CMakeForImGui.test/.github/workflows
+          --toolchain ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
+
+      - name: Build examples
+        run: >
+          cmake
+          --build ${{ github.workspace }}/build-examples
+          --config Release
+
+      - run: echo "Job exited by ${{ job.status }}."

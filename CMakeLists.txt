@@ -11,6 +11,7 @@ target_link_libraries(example_null PRIVATE Unofficial::DearImGui::imgui_core Uno
 add_executable(example_allegro5)
 target_sources(example_allegro5 PRIVATE examples/example_allegro5/main.cpp)
 target_link_libraries(example_allegro5 PRIVATE Unofficial::DearImGui::imgui_backend_allegro5 Unofficial::DearImGui::imgui_demo)
+target_link_libraries(example_allegro5 PRIVATE "$<$<PLATFORM_ID:Darwin>:-framework OpenGL -framework Carbon -framework ApplicationServices>")
 
 add_executable(example_glfw_opengl3)
 target_sources(example_glfw_opengl3 PRIVATE examples/example_glfw_opengl3/main.cpp)
@@ -93,4 +94,29 @@ if(WIN32)
   target_sources(example_sdl2_directx11 PRIVATE examples/example_sdl2_directx11/main.cpp)
   target_link_libraries(example_sdl2_directx11 PRIVATE Unofficial::DearImGui::imgui_backend_sdl2 Unofficial::DearImGui::imgui_backend_dx11 Unofficial::DearImGui::imgui_demo)
   target_compile_definitions(example_sdl2_directx11 PRIVATE $<$<PLATFORM_ID:Windows>:SDL_MAIN_HANDLED>)
+endif()
+
+if(APPLE)
+  add_executable(example_apple_opengl2)
+  target_sources(example_apple_opengl2 PRIVATE examples/example_apple_opengl2/main.mm)
+  target_link_libraries(example_apple_opengl2 PRIVATE Unofficial::DearImGui::imgui_backend_osx Unofficial::DearImGui::imgui_backend_opengl2 Unofficial::DearImGui::imgui_demo)
+  target_link_libraries(example_apple_opengl2 PRIVATE "-framework AppKit")
+
+  add_executable(example_apple_metal)
+  target_sources(example_apple_metal PRIVATE examples/example_apple_metal/main.mm)
+  target_link_libraries(example_apple_metal PRIVATE Unofficial::DearImGui::imgui_backend_osx Unofficial::DearImGui::imgui_backend_metal Unofficial::DearImGui::imgui_demo)
+  target_link_libraries(example_apple_metal PRIVATE "-framework AppKit" "-framework MetalKit")
+
+  add_executable(example_sdl2_metal)
+  target_sources(example_sdl2_metal PRIVATE examples/example_sdl2_metal/main.mm)
+  target_link_libraries(example_sdl2_metal PRIVATE Unofficial::DearImGui::imgui_backend_sdl2 Unofficial::DearImGui::imgui_backend_metal Unofficial::DearImGui::imgui_demo)
+
+  add_executable(example_sdl3_metal)
+  target_sources(example_sdl3_metal PRIVATE examples/example_sdl3_metal/main.mm)
+  target_link_libraries(example_sdl3_metal PRIVATE Unofficial::DearImGui::imgui_backend_sdl3 Unofficial::DearImGui::imgui_backend_metal Unofficial::DearImGui::imgui_demo)
+
+  add_executable(example_glfw_metal)
+  target_sources(example_glfw_metal PRIVATE examples/example_glfw_metal/main.mm)
+  target_link_libraries(example_glfw_metal PRIVATE Unofficial::DearImGui::imgui_backend_glfw Unofficial::DearImGui::imgui_backend_metal Unofficial::DearImGui::imgui_demo)
+  target_link_libraries(example_glfw_metal PRIVATE "-framework QuartzCore")
 endif()
