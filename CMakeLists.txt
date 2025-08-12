@@ -1,6 +1,9 @@
-cmake_minimum_required(VERSION 3.40.0)
+cmake_minimum_required(VERSION 4.0.0)
 
-project(CMakeForImGui.test CXX)
+project(CMakeForImGui.test
+  DESCRIPTION "Examples folder of the Dear ImGui configured by CMake build script support, the CMakeForImGui"
+  HOMEPAGE_URL "https://github.com/adembudak/CMakeForImGui.test"
+  LANGUAGES CXX)
 
 find_package(CMakeForImGui CONFIG REQUIRED)
 
@@ -46,7 +49,8 @@ target_compile_definitions(example_sdl2_vulkan PRIVATE $<$<PLATFORM_ID:Windows>:
 
 add_executable(example_sdl2_sdlrenderer2)
 target_sources(example_sdl2_sdlrenderer2 PRIVATE examples/example_sdl2_sdlrenderer2/main.cpp)
-target_link_libraries(example_sdl2_sdlrenderer2 PRIVATE Unofficial::DearImGui::imgui_backend_sdlrenderer2 Unofficial::DearImGui::imgui_backend_sdl2 Unofficial::DearImGui::imgui_demo)
+target_link_libraries(example_sdl2_sdlrenderer2 PRIVATE Unofficial::DearImGui::imgui_backend_sdlrenderer2 Unofficial::DearImGui::imgui_backend_sdl2
+                                                        Unofficial::DearImGui::imgui_demo)
 target_compile_definitions(example_sdl2_sdlrenderer2 PRIVATE $<$<PLATFORM_ID:Windows>:SDL_MAIN_HANDLED>)
 
 add_executable(example_sdl3_opengl3)
@@ -59,7 +63,8 @@ target_link_libraries(example_sdl3_vulkan PRIVATE Unofficial::DearImGui::imgui_b
 
 add_executable(example_sdl3_sdlrenderer3)
 target_sources(example_sdl3_sdlrenderer3 PRIVATE examples/example_sdl3_sdlrenderer3/main.cpp)
-target_link_libraries(example_sdl3_sdlrenderer3 PRIVATE Unofficial::DearImGui::imgui_backend_sdlrenderer3 Unofficial::DearImGui::imgui_backend_sdl3 Unofficial::DearImGui::imgui_demo)
+target_link_libraries(example_sdl3_sdlrenderer3 PRIVATE Unofficial::DearImGui::imgui_backend_sdlrenderer3 Unofficial::DearImGui::imgui_backend_sdl3
+                                                        Unofficial::DearImGui::imgui_demo)
 
 add_executable(example_sdl3_sdlgpu3)
 target_sources(example_sdl3_sdlgpu3 PRIVATE examples/example_sdl3_sdlgpu3/main.cpp)
