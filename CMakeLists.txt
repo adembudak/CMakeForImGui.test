@@ -5,7 +5,7 @@ project(CMakeForImGui.test
   HOMEPAGE_URL "https://github.com/adembudak/CMakeForImGui.test"
   LANGUAGES CXX)
 
-find_package(CMakeForImGui CONFIG REQUIRED COMPONENTS allegro5 glfw glut opengl3 opengl3 vulkan sdl2 sdlrenerer2)
+find_package(CMakeForImGui CONFIG REQUIRED COMPONENTS allegro5 glfw glut opengl3 opengl3 vulkan sdl2 sdlrenderer2)
 
 add_executable(example_null)
 target_sources(example_null PRIVATE examples/example_null/main.cpp)
