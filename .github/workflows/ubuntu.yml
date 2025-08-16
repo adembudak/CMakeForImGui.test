@@ -3,6 +3,8 @@ run-name: ${{ github.actor }} is testing out ${{ github.repository }}
 
 on:
   push:
+    branches:
+      - main
     paths-ignore:
       - 'README.md'
 
