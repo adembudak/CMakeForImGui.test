@@ -52,23 +52,23 @@ jobs:
           -D IMGUI_SOURCE_DIR=${{ github.workspace }}/imgui
           -D install=ON
           -D install_examples=OFF
-          -D examples=OFF
           -D uninstall=OFF
-          -D misc=ON -D misc_freetype=ON -D misc_cpp=ON -D misc_debugger=ON -D misc_fonts=ON
+          -D DearImGui_Misc_Options=ON -D DearImGui_Misc_Cpp=ON -D DearImGui_Misc_FreeType=ON -D DearImGui_Misc_Debugger=ON -D DearImGui_Misc_Fonts=ON
           -D pkg-config=ON
-          -D allegro5=ON
-          -D glut=ON
-          -D glfw=ON
-          -D opengl2=ON
-          -D opengl3=ON
-          -D vulkan=ON
-          -D sdl2=ON
-          -D sdlrenderer2=ON
-          -D sdl3=ON
-          -D sdlrenderer3=ON
-          -D sdlgpu3=ON
-          -D osx=ON
-          -D metal=ON
+          -D DearImGui_Backend_Allegro5=ON
+          -D DearImGui_Backend_FreeGLUT=ON
+          -D DearImGui_Backend_GLFW=ON
+          -D DearImGui_Backend_OpenGL2=ON
+          -D DearImGui_Backend_OpenGL3=ON
+          -D DearImGui_Backend_Vulkan=ON
+          -D DearImGui_Backend_SDL2=ON
+          -D DearImGui_Backend_SDLRenderer2=ON
+          -D DearImGui_Backend_SDL3=ON
+          -D DearImGui_Backend_SDLGPU3=ON
+          -D DearImGui_Backend_SDLRenderer3=ON
+          -D DearImGui_Backend_Metal=ON
+          -D DearImGui_Backend_OSX=ON
+          -D DearImGui_Examples=OFF
           --toolchain ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
       - name: Build ImGui
@@ -94,7 +94,7 @@ jobs:
           cmake
           -S ${{ github.workspace }}/CMakeForImGui.test
           -B ${{ github.workspace }}/build-examples
-          -D CMakeForImGui_DIR=${{ github.workspace }}/install.in.here/lib/cmake/CMakeForImGui
+          -D DearImGui_DIR=${{ github.workspace }}/install.in.here/lib/cmake/DearImGui
           -G Xcode
           -D VCPKG_MANIFEST_MODE=ON
           -D VCPKG_MANIFEST_DIR=${{ github.workspace }}/CMakeForImGui.test/.github/workflows
