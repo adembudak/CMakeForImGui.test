@@ -1,5 +1,4 @@
-
-Test executables for [CMakeForImGui](https://github.com/adembudak/CMakeForImGui) taken from the upstream [ImGui](https://github.com/ocornut/imgui)/examples folder.
+This repo demonstrates how to build [Dear ImGui](https://github.com/ocornut/imgui) examples using CMake build script from [CMakeForImGui](https://github.com/adembudak/CMakeForImGui).
 
 ##### Build Status
 
