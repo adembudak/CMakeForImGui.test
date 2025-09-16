@@ -36,7 +36,7 @@ jobs:
         uses: johnwason/vcpkg-action@v7
         id: vcpkg
         with:
-          manifest-dir: ${{ github.workspace }}/CMakeForImGui/.github/workflows
+          manifest-dir: ${{ github.workspace }}/CMakeForImGui
           triplet: x64-osx
           token: ${{ github.token }}
 
@@ -47,7 +47,7 @@ jobs:
           -B ${{ github.workspace }}/build
           -G Xcode
           -D VCPKG_MANIFEST_MODE=ON
-          -D VCPKG_MANIFEST_DIR=${{ github.workspace }}/CMakeForImGui/.github/workflows
+          -D VCPKG_MANIFEST_DIR=${{ github.workspace }}/CMakeForImGui
           -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/install.in.here
           -D IMGUI_SOURCE_DIR=${{ github.workspace }}/imgui
           -D install=ON
