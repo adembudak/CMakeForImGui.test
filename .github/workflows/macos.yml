@@ -68,7 +68,6 @@ jobs:
           -D DearImGui_Backend_SDLRenderer3=ON
           -D DearImGui_Backend_Metal=ON
           -D DearImGui_Backend_OSX=ON
-          -D DearImGui_Examples=OFF
           --toolchain ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
       - name: Build ImGui

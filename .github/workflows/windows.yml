@@ -70,7 +70,6 @@ jobs:
           -D DearImGui_Backend_DirectX10=ON
           -D DearImGui_Backend_DirectX11=ON
           -D DearImGui_Backend_DirectX12=ON
-          -D DearImGui_Examples=OFF
           --toolchain ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
       - name: Build ImGui
