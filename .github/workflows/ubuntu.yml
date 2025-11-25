@@ -95,6 +95,7 @@ jobs:
           -D IMGUI_SOURCE_DIR=${{ github.workspace }}/imgui
           -D DearImGui_DIR=${{ github.workspace }}/install.in.here/lib/cmake/DearImGui
           -G "Unix Makefiles"
+          -D VCPKG_MANIFEST_MODE=ON
           --toolchain ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
       - name: Build examples

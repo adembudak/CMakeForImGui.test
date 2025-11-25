@@ -105,7 +105,6 @@ jobs:
           -D DearImGui_DIR=${{ github.workspace }}/install.in.here/lib/cmake/DearImGui
           -G "Visual Studio 17 2022"
           -D VCPKG_MANIFEST_MODE=ON
-          -D VCPKG_MANIFEST_DIR=${{ github.workspace }}/CMakeForImGui.test/.github/workflows
           --toolchain ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
       - name: Build examples

@@ -97,7 +97,6 @@ jobs:
           -D DearImGui_DIR=${{ github.workspace }}/install.in.here/lib/cmake/DearImGui
           -G Xcode
           -D VCPKG_MANIFEST_MODE=ON
-          -D VCPKG_MANIFEST_DIR=${{ github.workspace }}/CMakeForImGui.test/.github/workflows
           --toolchain ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
       - name: Build examples
