@@ -1,17 +1,19 @@
-cmake_minimum_required(VERSION 4.0.0)
+cmake_minimum_required(VERSION 4.2)
 
 project(
   CMakeForImGui.test
-  DESCRIPTION "Examples folder of the Dear ImGui configured by CMake build script support, the CMakeForImGui"
+  DESCRIPTION "Examples folder of the Dear ImGui configured and built by CMake using CMakeForImGui"
   HOMEPAGE_URL "https://github.com/adembudak/CMakeForImGui.test"
   LANGUAGES CXX)
 
+set(CACHE{IMGUI_SOURCE_DIR} TYPE PATH HELP "Path to Dear ImGui source tree" VALUE "")
 if(NOT IMGUI_SOURCE_DIR)
-  message(FATAL_ERROR "set IMGUI_SOURCE_DIR to proceed:\ne.g. cmake -DIMGUI_SOURCE_DIR=path.to.imgui ...")
+  message(FATAL_ERROR "IMGUI_SOURCE_DIR variable must be set to reach example programs")
 endif()
 cmake_path(SET _imgui_dir ${IMGUI_SOURCE_DIR})
 
 find_package(DearImGui CONFIG REQUIRED)
+# cmake_pkg_config(IMPORT dearimgui REQUIRED) # pkg-config file can be used
 
 add_executable(example_null)
 target_sources(example_null PRIVATE ${_imgui_dir}/examples/example_null/main.cpp)
@@ -25,6 +27,7 @@ target_link_libraries(example_allegro5 PRIVATE "$<$<PLATFORM_ID:Darwin>:-framewo
 add_executable(example_glfw_opengl3)
 target_sources(example_glfw_opengl3 PRIVATE ${_imgui_dir}/examples/example_glfw_opengl3/main.cpp)
 target_link_libraries(example_glfw_opengl3 PRIVATE ImGui::Backend_GLFW ImGui::Backend_OpenGL3)
+# target_link_libraries(example_glfw_opengl3 PRIVATE PkgConfig::dearimgui) # build with pkg-config imported target name
 
 add_executable(example_glfw_opengl2)
 target_sources(example_glfw_opengl2 PRIVATE ${_imgui_dir}/examples/example_glfw_opengl2/main.cpp)
@@ -127,3 +130,4 @@ if(APPLE)
   target_link_libraries(example_glfw_metal PRIVATE ImGui::Backend_GLFW ImGui::Backend_Metal)
   target_link_libraries(example_glfw_metal PRIVATE "-framework QuartzCore")
 endif()
+
