@@ -13,6 +13,9 @@ jobs:
       - name: Install required packages
         run: brew install --cask xquartz
 
+      - name: Install the FASTBuild
+        run: brew install fastbuild
+
       - name: Setup CMake
         uses: jwlawson/actions-setup-cmake@v2
         with:
@@ -45,7 +48,8 @@ jobs:
           cmake
           -S ${{ github.workspace }}/CMakeForImGui
           -B ${{ github.workspace }}/build
-          -G Xcode
+          -D CMAKE_BUILD_TYPE=Debug
+          -G FASTBuild
           -D VCPKG_MANIFEST_MODE=ON
           -D VCPKG_MANIFEST_DIR=${{ github.workspace }}/CMakeForImGui
           -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/install.in.here
@@ -54,7 +58,7 @@ jobs:
           -D install_examples=OFF
           -D uninstall=OFF
           -D DearImGui_Misc_Options=ON -D DearImGui_Misc_Cpp=ON -D DearImGui_Misc_FreeType=ON -D DearImGui_Misc_Debugger=ON -D DearImGui_Misc_Fonts=ON
-          -D pkg-config=ON
+          -D Pkg-config=ON
           -D DearImGui_Backend_Allegro5=ON
           -D DearImGui_Backend_FreeGLUT=ON
           -D DearImGui_Backend_GLFW=ON
@@ -71,16 +75,10 @@ jobs:
           --toolchain ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
       - name: Build ImGui
-        run: >
-          cmake
-          --build ${{ github.workspace }}/build
-          --config Release
+        run: cmake --build ${{ github.workspace }}/build
 
       - name: Install ImGui
-        run: >
-          cmake
-          --install ${{ github.workspace }}/build
-          --config Release
+        run: cmake --install ${{ github.workspace }}/build
 
       - name: Check out CMakeForImGui.test
         uses: actions/checkout@v4
@@ -95,14 +93,12 @@ jobs:
           -B ${{ github.workspace }}/build-examples
           -D IMGUI_SOURCE_DIR=${{ github.workspace }}/imgui
           -D DearImGui_DIR=${{ github.workspace }}/install.in.here/lib/cmake/DearImGui
-          -G Xcode
+          -D CMAKE_BUILD_TYPE=Debug
+          -G FASTBuild
           -D VCPKG_MANIFEST_MODE=ON
           --toolchain ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
       - name: Build examples
-        run: >
-          cmake
-          --build ${{ github.workspace }}/build-examples
-          --config Release
+        run: cmake --build ${{ github.workspace }}/build-examples
 
       - run: echo "Job exited by ${{ job.status }}."
