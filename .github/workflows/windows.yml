@@ -42,7 +42,7 @@ jobs:
           cmake
           -S ${{ github.workspace }}/CMakeForImGui
           -B ${{ github.workspace }}/build
-          -G "Visual Studio 17 2022"
+          -G "Visual Studio 18 2026"
           -D VCPKG_MANIFEST_MODE=ON
           -D VCPKG_MANIFEST_DIR=${{ github.workspace }}/CMakeForImGui
           -D CMAKE_INSTALL_PREFIX=${{ github.workspace }}/install.in.here
@@ -103,7 +103,7 @@ jobs:
           -B ${{ github.workspace }}/build-examples
           -D IMGUI_SOURCE_DIR=${{ github.workspace }}/imgui
           -D DearImGui_DIR=${{ github.workspace }}/install.in.here/lib/cmake/DearImGui
-          -G "Visual Studio 17 2022"
+          -G "Visual Studio 18 2026"
           -D VCPKG_MANIFEST_MODE=ON
           --toolchain ${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
